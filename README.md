@@ -78,6 +78,7 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    python example_usage.py
    ```
 
+
    The script prints the following results, one per line:
 
    ```
@@ -92,6 +93,7 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    These correspond to the formulas `EF p`, `AG p`, `AF p`, `EG q`,
    `E[q U p]`, and `A[q U p]` in that order. They match the expectations in the
    unit tests.
+
 
 
 ## Test Suite Overview
