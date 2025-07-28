@@ -28,6 +28,51 @@ Project Concept (100 words or less):
 We will design and implement a model checker for Computational Tree Logic (CTL) using Binary Decision Diagrams (BDDs) to represent state sets symbolically. Starting from a user‑specified transition system and CTL formula, the tool will construct BDDs for atomic propositions, compute predecessor and fixpoint operations, and evaluate temporal operators (EG, EU, AF, etc.) efficiently. We’ll compare its performance against an explicit‑state checker on benchmark examples, analyze memory and runtime trade‑offs, and document how BDD variable ordering impacts scalability. The final deliverable includes source code, test suite, and a performance report.
 
 
+## Getting Started
+
+The project requires **Python 3.10+**. The code lives in `src/` and the unit tests are in `tests/`. No compilation step is needed because everything is written in Python. Follow these steps to set up a development environment and run the model checker:
+
+1. **Clone the repository**
+
+   ```bash
+   git clone <repo-url>
+   cd cs6840finalProject
+   ```
+
+2. **Create and activate a virtual environment** (recommended)
+
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the tests**
+
+   ```bash
+   pytest
+   ```
+
+5. **Use the model checker in your own scripts**
+
+   ```python
+   from src.bddctl import TransitionSystem, CTLModelChecker
+
+   ts = TransitionSystem(
+       num_states=2,
+       transitions=[(0, 1), (1, 1)],
+       labeling={0: {"q"}, 1: {"p"}},
+       init={0},
+   )
+   mc = CTLModelChecker(ts)
+   print(mc.satisfies("EF p"))
+   ```
+
 
 
 --------------------------------------------------------------------------------------------------------------------------
