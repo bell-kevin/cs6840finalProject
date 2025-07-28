@@ -78,22 +78,6 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    python example_usage.py
    ```
 
-   The script contains the following snippet if you want to copy it into
-   your own code:
-
-   ```python
-   from src.bddctl import TransitionSystem, CTLModelChecker
-
-   ts = TransitionSystem(
-       num_states=2,
-       transitions=[(0, 1), (1, 1)],
-       labeling={0: {"q"}, 1: {"p"}},
-       init={0},
-   )
-   mc = CTLModelChecker(ts)
-   print(mc.satisfies("EF p"))
-   ```
-
 
 
 --------------------------------------------------------------------------------------------------------------------------
