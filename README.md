@@ -78,6 +78,11 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    python example_usage.py
    ```
 
+   The script prints **True**, indicating that the CTL formula `EF p` holds for
+   the transition system defined in the example. In other words, there exists a
+   path starting from the initial state where `p` is eventually reached.
+
+
 ## Test Suite Overview
 
 The `tests/` directory contains six unit tests exercising key CTL operators on
