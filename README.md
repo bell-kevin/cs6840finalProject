@@ -48,7 +48,7 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    source venv/bin/activate
    ```
 
-   On **Windows (PowerShell)**:
+   On **Windows (like in VS Code) (PowerShell)**:
 
    ```powershell
    py -m venv venv
