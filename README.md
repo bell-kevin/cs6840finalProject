@@ -69,7 +69,17 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    pytest
    ```
 
-5. **Use the model checker in your own scripts**
+5. **Run the example script**
+
+   A minimal demonstration is provided in `example_usage.py`.
+   Execute it from the repository root:
+
+   ```bash
+   python example_usage.py
+   ```
+
+   The script contains the following snippet if you want to copy it into
+   your own code:
 
    ```python
    from src.bddctl import TransitionSystem, CTLModelChecker
