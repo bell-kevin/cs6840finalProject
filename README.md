@@ -41,9 +41,20 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
 
 2. **Create and activate a virtual environment** (recommended)
 
+   On **Linux/macOS**:
+
    ```bash
    python3 -m venv venv
    source venv/bin/activate
+   ```
+
+   On **Windows (PowerShell)**:
+
+   ```powershell
+   py -m venv venv
+   .\venv\Scripts\activate
+   # If you get a policy error, run
+   # Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
    ```
 
 3. **Install dependencies**
