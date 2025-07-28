@@ -5,6 +5,20 @@ from dataclasses import dataclass
 from typing import Dict, Set, Tuple, List, Any
 
 from dd.autoref import BDD
+import warnings
+# Suppress deprecation warnings triggered by lark's use of `sre_parse` and
+# `sre_constants`. The library still imports these modules on Python 3.12,
+# which causes noisy `DeprecationWarning` messages during test runs.
+warnings.filterwarnings(
+    "ignore",
+    "module 'sre_parse' is deprecated",
+    DeprecationWarning,
+)
+warnings.filterwarnings(
+    "ignore",
+    "module 'sre_constants' is deprecated",
+    DeprecationWarning,
+)
 from lark import Lark, Transformer, v_args
 
 
