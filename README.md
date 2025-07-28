@@ -2,6 +2,34 @@
 
 # 
 
+
+CS 6840
+Formal System Design
+Summer Semester 2025
+FINAL PROJECT PROPOSAL
+DUE 7/29/2025
+Please fill out and submit the following final project information:
+(1) Indicate the type of project
+(2) Provide a project title
+(3) Describe the project concept in 100 words or less
+Student Name: ___________________________
+Project Type: ____ Research Paper ____ Programming Project
+Project Title: _________________________________
+Project Concept (100 words or less):
+
+
+**Student Name:** Kevin Bell
+
+**Project Type:** ☑ Programming Project ☐ Research Paper
+
+**Project Title:** Developing a BDD‑Based CTL Model Checker
+
+**Project Concept (100 words or less):**
+We will design and implement a model checker for Computational Tree Logic (CTL) using Binary Decision Diagrams (BDDs) to represent state sets symbolically. Starting from a user‑specified transition system and CTL formula, the tool will construct BDDs for atomic propositions, compute predecessor and fixpoint operations, and evaluate temporal operators (EG, EU, AF, etc.) efficiently. We’ll compare its performance against an explicit‑state checker on benchmark examples, analyze memory and runtime trade‑offs, and document how BDD variable ordering impacts scalability. The final deliverable includes source code, test suite, and a performance report.
+
+
+
+
 --------------------------------------------------------------------------------------------------------------------------
 == We're Using GitHub Under Protest ==
 
