@@ -78,6 +78,21 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    python example_usage.py
    ```
 
+## Test Suite Overview
+
+The `tests/` directory contains six unit tests exercising key CTL operators on
+small example transition systems. Each test instantiates a transition system and
+checks whether a CTL formula holds starting from the initial state.
+
+| Test name | Checked formula | Expected result |
+|-----------|-----------------|-----------------|
+| `test_ef_p` | `EF p` | **True** – a path exists where `p` eventually holds. |
+| `test_ag_p_false` | `AG p` | **False** – not all paths maintain `p` globally. |
+| `test_af_p_true` | `AF p` | **True** – on all paths `p` is eventually reached. |
+| `test_eg_q_false` | `EG q` | **False** – no path stays in states labeled `q` forever. |
+| `test_eu_q_until_p_true` | `E[q U p]` | **True** – a path exists where `q` holds until `p` becomes true. |
+| `test_au_q_until_p_false` | `A[q U p]` | **False** – there exists a path that remains in `q` indefinitely without ever reaching `p`. |
+
 
 
 --------------------------------------------------------------------------------------------------------------------------
