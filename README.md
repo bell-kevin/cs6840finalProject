@@ -79,7 +79,21 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    ```
 
 
-The script prints **True**, indicating that the CTL formula `EF p` holds for the transition system defined in the example. In other words, there exists a path starting from the initial state where `p` is eventually reached.
+   The script prints the following results, one per line:
+
+   ```
+   True
+   False
+   True
+   False
+   True
+   False
+   ```
+
+   These correspond to the formulas `EF p`, `AG p`, `AF p`, `EG q`,
+   `E[q U p]`, and `A[q U p]` in that order. They match the expectations in the
+   unit tests.
+
 
 
 ## Test Suite Overview
