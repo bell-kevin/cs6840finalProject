@@ -114,6 +114,7 @@ class TransitionSystem:
     transitions: List[Tuple[int, int]]
     labeling: Dict[int, Set[str]]
     init: Set[int] | None = None
+    var_order: List[int] | None = None
 
     def __post_init__(self):
         if self.init is None:
@@ -122,7 +123,14 @@ class TransitionSystem:
         self.bdd = BDD()
         self.state_vars = [f"s{i}" for i in range(self.num_bits)]
         self.next_vars = [f"s{i}_next" for i in range(self.num_bits)]
-        self.bdd.declare(*self.state_vars, *self.next_vars)
+        order = self.state_vars + self.next_vars
+        if self.var_order is not None:
+            if sorted(self.var_order) != list(range(self.num_bits)):
+                raise ValueError("var_order must be a permutation of bit indices")
+            order = [self.state_vars[i] for i in self.var_order] + [
+                self.next_vars[i] for i in self.var_order
+            ]
+        self.bdd.declare(*order)
         self.var_map = {v: vp for v, vp in zip(self.state_vars, self.next_vars)}
         self.var_map_inv = {vp: v for v, vp in zip(self.state_vars, self.next_vars)}
         self._build_transition_relation()
