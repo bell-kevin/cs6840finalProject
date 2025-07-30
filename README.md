@@ -171,6 +171,22 @@ checks whether a CTL formula holds starting from the initial state.
 | `test_eu_q_until_p_true` | `E[q U p]` | **True** – a path exists where `q` holds until `p` becomes true. |
 | `test_au_q_until_p_false` | `A[q U p]` | **False** – there exists a path that remains in `q` indefinitely without ever reaching `p`. |
 
+## Benchmarks
+
+Two small benchmarking scripts live in the `benchmarks/` directory:
+
+* `run_benchmarks.py` compares runtime and peak memory usage of the BDD and explicit checkers on a ring topology.
+* `variable_order.py` measures the effect of reversing the BDD variable order on a simple chain.
+
+Run them from the repository root as follows:
+
+```bash
+python benchmarks/run_benchmarks.py
+python benchmarks/variable_order.py
+```
+
+Sample output is included in [BENCHMARK_RESULTS.md](BENCHMARK_RESULTS.md).
+
 
 
 --------------------------------------------------------------------------------------------------------------------------
