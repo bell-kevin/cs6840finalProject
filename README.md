@@ -12,10 +12,12 @@ Please fill out and submit the following final project information:
 (1) Indicate the type of project
 (2) Provide a project title
 (3) Describe the project concept in 100 words or less
-Student Name: ___________________________
-Project Type: ____ Research Paper ____ Programming Project
-Project Title: _________________________________
-Project Concept (100 words or less):
+Student Name: Kevin Bell
+Project Type: Programming Project
+Project Title: Developing a BDD-Based CTL Model Checker
+Project Concept (100 words or less): Implement a CTL model checker using
+Binary Decision Diagrams (BDDs) for symbolic state representation alongside
+a simpler explicit-state version for comparison.
 
 
 
@@ -186,6 +188,9 @@ python benchmarks/variable_order.py
 ```
 
 Sample output is included in [BENCHMARK_RESULTS.md](BENCHMARK_RESULTS.md).
+
+For a concise overview of the project goals, module layout, and example
+workflow, see [PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md).
 
 
 
