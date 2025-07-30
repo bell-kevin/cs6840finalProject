@@ -18,6 +18,61 @@ Project Title: _________________________________
 Project Concept (100 words or less):
 
 
+
+
+CS 6840
+Formal System Design
+Summer Semester 2025
+FINAL PROJECT
+DUE 8/12/2025
+Final Project – Formal System Design
+Following the timetable listed below, develop and submit a project that significantly extends one
+or more of the formal system design subject matter areas or programming-related topics
+addressed in class. Suggested content and code development efforts appropriate for more
+detailed investigations include Promela, state-space explosion, symbolic CTL model checking,
+stutter bisimulation, nested depth first search (DFS) implementations, linear-time ample sets,
+timed automata, and probabilistic CTL.
+The final project design and scope should satisfy one of the following two options:
+I. Research Paper
+Compose a formatted, professional research paper 15 to 18 pages in length on an approved topic
+related to formal system design. The paper should include a reference section listing at least 6
+external sources (books, journals, conference proceedings, etc.). These sources must be
+explicitly cited from within the text of the research paper and should closely relate to the
+research topic.
+Assignment evaluation will be based on the following criteria:
+• Level of analysis beyond information discussed in class
+• Comprehensive treatment of the research topic
+• Accuracy of claims and statements
+• Relevance and number of external sources
+• Paper length
+II. Advanced Code Development
+Design and develop a sufficiently commented, functional software program that explores and
+demonstrates a significant implementation involved in formal system design. The final program
+may (a) refine and enhance any code examples presented during the course, or (b) introduce an
+implementation of a component used in formal verification that was not specifically covered in
+the course. Separate supporting documentation 1-2 pages in length should accompany the
+submitted code. This documentation should include (i) a brief Problem Statement summarizing
+the purpose of the code, (ii) listing and descriptions of the code modules (e.g., .c[pp] files), and
+(iii) any illustrative examples of input/output demonstrating the primary functionality of the
+program.
+Assignment evaluation will be based on the following criteria:
+• Complexity and relevance of the formal system design problem
+• Program successfully compiles
+• Program functionality satisfies software requirement specifications
+• Program organization is clear and concise
+• Commenting standards are satisfied
+• Documentation is complete and clear
+Presentation
+All submissions should include a recorded presentation of the project at least 15 minutes in
+length. The presentation should (a) satisfy the length requirement and (b) provide a
+comprehensive and well-articulated discussion of the project.
+Final Project Time Table
+❖ Preliminary approval of final project content and scope – Tuesday, July 29
+❖ Project and Presentation Submission Due – Tuesday, August 12
+
+
+
+
 **Student Name:** Kevin Bell
 
 **Project Type:** ☑ Programming Project ☐ Research Paper
