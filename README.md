@@ -137,12 +137,18 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    The script prints a label and result for each CTL formula:
 
    ```
-   EF p: True
-   AG p: False
-   AF p: True
-   EG q: False
-   E[q U p]: True
-   A[q U p]: False
+   BDD EF p: True
+   BDD AG p: False
+   BDD AF p: True
+   BDD EG q: False
+   BDD E[q U p]: True
+   BDD A[q U p]: False
+   Explicit EF p: True
+   Explicit AG p: False
+   Explicit AF p: True
+   Explicit EG q: False
+   Explicit E[q U p]: True
+   Explicit A[q U p]: False
    ```
 
    The formulas correspond to the unit tests and demonstrate both
