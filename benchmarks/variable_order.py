@@ -2,10 +2,15 @@
 
 from __future__ import annotations
 
+import os
+import sys
 import time
+import math
+
+# Allow running the script directly from the repository root
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 from src.bddctl import TransitionSystem, CTLModelChecker
-import math
 
 
 def build_chain(n: int):
