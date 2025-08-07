@@ -143,12 +143,16 @@ The project requires **Python 3.10+**. The code lives in `src/` and the unit tes
    BDD AG p: False
    BDD AF p: True
    BDD EG q: False
+   BDD EX p: True
+   BDD AX p: True
    BDD E[q U p]: True
    BDD A[q U p]: False
    Explicit EF p: True
    Explicit AG p: False
    Explicit AF p: True
    Explicit EG q: False
+   Explicit EX p: True
+   Explicit AX p: True
    Explicit E[q U p]: True
    Explicit A[q U p]: False
    ```
