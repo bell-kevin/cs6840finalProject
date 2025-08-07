@@ -31,21 +31,22 @@ def run_checker(checker, formula: str):
 
 
 def main() -> None:
-    n = 20
-    transitions, labeling = build_ring(n)
     formula = "AF p"
+    for n in [20, 200, 1000]:
+        transitions, labeling = build_ring(n)
 
-    ts_bdd = TransitionSystem(num_states=n, transitions=transitions, labeling=labeling, init={0})
-    ts_exp = ExplicitTransitionSystem(num_states=n, transitions=transitions, labeling=labeling, init={0})
+        ts_bdd = TransitionSystem(num_states=n, transitions=transitions, labeling=labeling, init={0})
+        ts_exp = ExplicitTransitionSystem(num_states=n, transitions=transitions, labeling=labeling, init={0})
 
-    bdd_mc = CTLModelChecker(ts_bdd)
-    exp_mc = ExplicitCTLModelChecker(ts_exp)
+        bdd_mc = CTLModelChecker(ts_bdd)
+        exp_mc = ExplicitCTLModelChecker(ts_exp)
 
-    res_bdd, time_bdd, mem_bdd = run_checker(bdd_mc, formula)
-    res_exp, time_exp, mem_exp = run_checker(exp_mc, formula)
+        res_bdd, time_bdd, mem_bdd = run_checker(bdd_mc, formula)
+        res_exp, time_exp, mem_exp = run_checker(exp_mc, formula)
 
-    print("BDD result:", res_bdd, "time: %.4fs" % time_bdd, "peak KB: %.1f" % mem_bdd)
-    print("Explicit result:", res_exp, "time: %.4fs" % time_exp, "peak KB: %.1f" % mem_exp)
+        print(f"n={n} BDD result: {res_bdd} time: {time_bdd:.4f}s peak KB: {mem_bdd:.1f}")
+        print(f"n={n} Explicit result: {res_exp} time: {time_exp:.4f}s peak KB: {mem_exp:.1f}")
+        print()
 
 
 if __name__ == "__main__":
