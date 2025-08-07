@@ -66,3 +66,15 @@ def test_au_q_until_p_false():
     ts = build_ts_until()
     mc = CTLModelChecker(ts)
     assert not mc.satisfies("A[q U p]")
+
+
+def test_ex_p_true():
+    ts = build_ts()
+    mc = CTLModelChecker(ts)
+    assert mc.satisfies("EX p")
+
+
+def test_ax_q_false():
+    ts = build_ts()
+    mc = CTLModelChecker(ts)
+    assert not mc.satisfies("AX q")

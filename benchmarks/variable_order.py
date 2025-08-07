@@ -20,8 +20,7 @@ def build_chain(n: int):
     return transitions, labeling
 
 
-def run_with_order(order):
-    n = 16
+def run_with_order(n: int, order):
     transitions, labeling = build_chain(n)
     ts = TransitionSystem(num_states=n, transitions=transitions, labeling=labeling, init={0}, var_order=order)
     mc = CTLModelChecker(ts)
@@ -32,13 +31,15 @@ def run_with_order(order):
 
 
 def main() -> None:
-    default_res, default_time = run_with_order(None)
-    n_bits = int(math.ceil(math.log2(16))) or 1
-    reverse_order = list(reversed(range(n_bits)))
-    rev_res, rev_time = run_with_order(reverse_order)
+    for n in [16, 64]:
+        default_res, default_time = run_with_order(n, None)
+        n_bits = int(math.ceil(math.log2(n))) or 1
+        reverse_order = list(reversed(range(n_bits)))
+        rev_res, rev_time = run_with_order(n, reverse_order)
 
-    print("Default order:", default_res, "time: %.4fs" % default_time)
-    print("Reversed order:", rev_res, "time: %.4fs" % rev_time)
+        print(f"n={n} default order: {default_res} time: {default_time:.4f}s")
+        print(f"n={n} reversed order: {rev_res} time: {rev_time:.4f}s")
+        print()
 
 
 if __name__ == "__main__":

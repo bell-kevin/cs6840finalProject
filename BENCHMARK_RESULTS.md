@@ -6,24 +6,33 @@ Benchmarks were executed on the default container environment using Python 3.12.
 
 ## Ring Topology
 
-`run_benchmarks.py` constructs a ring of 20 states and checks `AF p` with both backends:
+`run_benchmarks.py` constructs rings of increasing size and checks `AF p` with both backends:
 
 ```
 $ python benchmarks/run_benchmarks.py
-BDD result: True time: 0.0280s peak KB: 326.7
-Explicit result: True time: 0.0009s peak KB: 7.0
+n=20 BDD result: True time: 0.0477s peak KB: 326.7
+n=20 Explicit result: True time: 0.0017s peak KB: 7.0
+
+n=200 BDD result: True time: 4.0476s peak KB: 20359.0
+n=200 Explicit result: True time: 0.1111s peak KB: 31.8
+
+n=1000 BDD result: True time: 95.6191s peak KB: 409808.0
+n=1000 Explicit result: True time: 4.6379s peak KB: 197.5
 ```
 
-The explicit checker is faster on this tiny example, but consumes similar peak memory.
+The explicit checker handles larger rings far more efficiently on this workload.
 
 ## Variable Ordering
 
-`variable_order.py` explores the impact of BDD variable ordering for a chain of 16 states:
+`variable_order.py` explores the impact of BDD variable ordering for chains of 16 and 64 states:
 
 ```
 $ python benchmarks/variable_order.py
-Default order: True time: 0.0035s
-Reversed order: True time: 0.0026s
+n=16 default order: True time: 0.0059s
+n=16 reversed order: True time: 0.0048s
+
+n=64 default order: True time: 0.0940s
+n=64 reversed order: True time: 0.0618s
 ```
 
-For this small system both orders yield the same result and comparable runtime, but larger models may show greater differences.
+Reversing the bit order yields a noticeable speedup for the larger chain, illustrating how variable ordering can affect BDD performance.
