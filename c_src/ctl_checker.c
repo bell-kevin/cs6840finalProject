@@ -650,6 +650,7 @@ static void load_transition_system(const char *path, TransitionSystem *ts, char 
     fclose(f);
 }
 
+#ifndef CTL_CHECKER_NO_MAIN
 // -------------------- main --------------------
 int main(int argc, char **argv) {
     if (argc != 2) {
@@ -671,4 +672,5 @@ int main(int argc, char **argv) {
     free_transition_system(&ts);
     return result ? EXIT_SUCCESS : EXIT_FAILURE;
 }
+#endif
 
