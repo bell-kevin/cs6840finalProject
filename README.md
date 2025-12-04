@@ -10,6 +10,7 @@ reference explicit-state checker is included for comparison and benchmarking.
 - [Getting Started](#getting-started)
 - [Running Tests](#running-tests)
 - [Example Usage](#example-usage)
+- [C Implementation](#c-implementation)
 - [Benchmarks](#benchmarks)
 - [Documentation](#documentation)
 
@@ -35,6 +36,49 @@ Execute the test suite from the repository root:
 ```bash
 pytest
 ```
+
+## C Implementation
+
+A standalone C11 port of the explicit CTL model checker lives in `c_src/`.
+Build the CLI binary with `make` and provide a text file describing the
+transition system and formula:
+
+```bash
+make -C c_src
+./c_src/ctl_checker path/to/input.txt
+```
+
+The input format is line-oriented:
+
+```
+states <num_states>
+init <k> <s0> ... <sk-1>
+transitions <m>
+u0 v0
+...
+u(m-1) v(m-1)
+labels <l>
+state count label0 ... label(count-1)
+...
+<formula>
+```
+
+For example:
+
+```
+states 2
+init 1 0
+transitions 2
+0 1
+1 1
+labels 2
+0 1 q
+1 1 p
+EF p
+```
+
+The program prints `true` when all initial states satisfy the formula and
+exits with a zero status code; otherwise it prints `false` and exits non-zero.
 
 ## Example Usage
 
