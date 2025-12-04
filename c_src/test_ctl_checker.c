@@ -88,6 +88,60 @@ static TransitionSystem make_two_init_ts(void) {
     return ts;
 }
 
+static TransitionSystem make_branching_ts(void) {
+    TransitionSystem ts = {0};
+    ts.num_states = 3;
+    ts.init_count = 1;
+    ts.num_transitions = 3;
+
+    ts.labeling = (char ***)checked_calloc(ts.num_states, sizeof(char **));
+    ts.label_counts = (int *)checked_calloc(ts.num_states, sizeof(int));
+    ts.init_states = (int *)checked_calloc(ts.init_count, sizeof(int));
+    ts.init_states[0] = 0;
+
+    ts.transitions = (Transition *)checked_calloc(ts.num_transitions, sizeof(Transition));
+    ts.transitions[0] = (Transition){0, 1};
+    ts.transitions[1] = (Transition){0, 2};
+    ts.transitions[2] = (Transition){2, 2};
+
+    ts.label_counts[0] = 0;
+    ts.labeling[0] = NULL;
+
+    ts.label_counts[1] = 1;
+    ts.labeling[1] = (char **)checked_calloc(1, sizeof(char *));
+    ts.labeling[1][0] = checked_strdup("p");
+
+    ts.label_counts[2] = 1;
+    ts.labeling[2] = (char **)checked_calloc(1, sizeof(char *));
+    ts.labeling[2][0] = checked_strdup("q");
+
+    return ts;
+}
+
+static TransitionSystem make_uniform_label_ts(void) {
+    TransitionSystem ts = {0};
+    ts.num_states = 2;
+    ts.init_count = 1;
+    ts.num_transitions = 2;
+
+    ts.labeling = (char ***)checked_calloc(ts.num_states, sizeof(char **));
+    ts.label_counts = (int *)checked_calloc(ts.num_states, sizeof(int));
+    ts.init_states = (int *)checked_calloc(ts.init_count, sizeof(int));
+    ts.init_states[0] = 0;
+
+    ts.transitions = (Transition *)checked_calloc(ts.num_transitions, sizeof(Transition));
+    ts.transitions[0] = (Transition){0, 1};
+    ts.transitions[1] = (Transition){1, 1};
+
+    for (int i = 0; i < ts.num_states; i++) {
+        ts.label_counts[i] = 1;
+        ts.labeling[i] = (char **)checked_calloc(1, sizeof(char *));
+        ts.labeling[i][0] = checked_strdup("q");
+    }
+
+    return ts;
+}
+
 static void test_set_complement(void) {
     StateSet s = set_create(3);
     s.data[0] = 1;
@@ -101,6 +155,33 @@ static void test_set_complement(void) {
 
     set_free(&s);
     set_free(&comp);
+}
+
+static void test_set_union_and_intersection(void) {
+    StateSet a = set_create(4);
+    StateSet b = set_create(4);
+    a.data[0] = 1;
+    a.data[2] = 1;
+    b.data[1] = 1;
+    b.data[2] = 1;
+
+    StateSet union_set = set_union(&a, &b);
+    StateSet intersection_set = set_intersection(&a, &b);
+
+    assert(union_set.data[0] == 1);
+    assert(union_set.data[1] == 1);
+    assert(union_set.data[2] == 1);
+    assert(union_set.data[3] == 0);
+
+    assert(intersection_set.data[0] == 0);
+    assert(intersection_set.data[1] == 0);
+    assert(intersection_set.data[2] == 1);
+    assert(intersection_set.data[3] == 0);
+
+    set_free(&a);
+    set_free(&b);
+    set_free(&union_set);
+    set_free(&intersection_set);
 }
 
 static void test_predecessor_operator(void) {
@@ -167,18 +248,49 @@ static void test_multiple_inits_must_satisfy(void) {
     free_transition_system(&ts);
 }
 
+static void test_satisfies_ex_and_ax(void) {
+    TransitionSystem ts = make_branching_ts();
+
+    Node *exists_next = parse_ctl("EX p");
+    Node *all_next = parse_ctl("AX p");
+
+    assert(satisfies(&ts, exists_next) == true);
+    assert(satisfies(&ts, all_next) == false);
+
+    free_ast(exists_next);
+    free_ast(all_next);
+    free_transition_system(&ts);
+}
+
+static void test_satisfies_ef_and_eg(void) {
+    TransitionSystem ts = make_uniform_label_ts();
+
+    Node *eventually_p = parse_ctl("EF p");
+    Node *globally_q = parse_ctl("EG q");
+
+    assert(satisfies(&ts, eventually_p) == false);
+    assert(satisfies(&ts, globally_q) == true);
+
+    free_ast(eventually_p);
+    free_ast(globally_q);
+    free_transition_system(&ts);
+}
+
 int main(void) {
     struct {
         const char *name;
         void (*fn)(void);
     } tests[] = {
         {"set complement", test_set_complement},
+        {"set union and intersection", test_set_union_and_intersection},
         {"predecessor operator", test_predecessor_operator},
         {"AF holds", test_satisfies_af_true},
         {"AG falsified", test_satisfies_ag_false},
         {"E until holds", test_satisfies_eu_true},
         {"A until holds", test_satisfies_au_true},
         {"all init states required", test_multiple_inits_must_satisfy},
+        {"EX and AX evaluation", test_satisfies_ex_and_ax},
+        {"EF fails but EG holds", test_satisfies_ef_and_eg},
     };
 
     for (size_t i = 0; i < sizeof(tests) / sizeof(tests[0]); i++) {
