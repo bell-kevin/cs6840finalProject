@@ -75,7 +75,7 @@ Sample results are available in
 ## Documentation
 
 For an overview of project goals, module layout, and example workflows, see
-[PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md)
+[PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md).
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
